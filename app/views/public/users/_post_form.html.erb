@@ -1,0 +1,9 @@
+<div class="row col-xs-9">
+	<%= form_for(post) do |f| %>
+		<%= f.label :murmur, "Text" %>
+		<%= text_field :murmur %>
+		<%= f.label :tag_list, "タグ" %>
+		<%= text_field_tag "post[tag_list", post.tag_list, :class => "form-control" %>
+		<%= f.submit "投稿" %>
+	<% end %>
+</div>
