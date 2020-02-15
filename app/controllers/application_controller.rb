@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 
 	def after_sign_in_path_for(resource)
-		public_users_mypage_path(current_user.friendly_url)
+		users_mypage_path(current_user.friendly_url)
 	end
 
 	def after_sign_out_path_for(resource)
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
 	protected
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :friendly_url])
+		devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :friendly_url, :email])
 		devise_parameter_sanitizer.permit(:sign_in, keys: [:friendly_url])
 	end
 

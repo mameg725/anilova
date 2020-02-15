@@ -1,9 +1,22 @@
-<div class="row col-xs-9">
-	<%= form_for(post, url:"/public/posts/#{post.id}") do |f| %>
-		<%= f.label :murmur, "Text" %>
-		<%= f.text_area :murmur %>
-		<%= f.label :tag_list, "Tag" %>
-		<%= text_field_tag "post[tag_list", post.tag_list, :class => "form-control" %>
-		<%= f.submit "投稿" %>
-	<% end %>
-</div>
+<%= form_for(post) do |f| %>
+<table>
+	<tbody>
+		<tr>
+			<td>
+				<%= f.attachment_field :post_image %>
+			</td>
+			<td>
+				<%= f.label :murmur, "Text" %><br>
+				<%= f.text_area :murmur %>
+			</td>
+		</tr>
+		<tr>
+			<td><%= f.submit "投稿" %></td>
+			<td>
+				<%= f.label :tag_list, "Tag" %>
+				<%= text_field_tag "post[tag_list", post.tag_list, :class => "form-control" %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<% end %>

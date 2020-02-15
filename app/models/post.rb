@@ -4,4 +4,7 @@ class Post < ApplicationRecord
 	belongs_to :user
 	acts_as_taggable
 	attachment :post_image
+	def favorite_by?(user)
+		favorites.where(user_id: user.id).exists?
+	end
 end

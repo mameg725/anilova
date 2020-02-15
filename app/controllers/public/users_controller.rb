@@ -17,6 +17,10 @@ class Public::UsersController < ApplicationController
   end
 
   def favoindex
+    @me = current_user
+    @post = Post.new
+    @user = User.friendly.find(params[:id])
+    @favorites = Favorite.where(user_id: current_user.id)
   end
 
   def update

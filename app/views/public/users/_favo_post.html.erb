@@ -1,0 +1,5 @@
+<%= favorites.each do |favorite| %>
+	<% post = Post.find_by(id: favorite.post_id) %>
+	<%= attachment_image_tag(favorite.post, :post_image, :fill, 200, 200, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+	<%= favorite.murmur %>
+<% end %>

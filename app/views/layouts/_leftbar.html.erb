@@ -1,0 +1,22 @@
+<div class="row col-xs-3">
+	<div class="">
+		<% if owner_signed_in? %>
+		<% elsif user_signed_in? %>
+			<table>
+				<tr><td><%= me.name %></td></tr>
+				<tr><td>@<%= me.friendly_url %></td></tr>
+				<tr><td><%= me.website %></td></tr>
+				<tr><td><%= me.introduction %></td></tr>
+				<tr><td>follow <%= me.follower.count %></td></tr>
+				<tr><td>folower<%= me.followed.count %></td></tr>
+			</table>
+			<%= link_to "Setting" %>
+		<% else %>
+			<%= link_to "ログインはこちらから", new_user_session_path %><br>
+			<%= link_to "新規登録はこちらから", new_user_registration_path %>
+		<% end %>
+	</div>
+	<div class="">
+
+	</div>
+</div>

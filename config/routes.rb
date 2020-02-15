@@ -16,10 +16,9 @@ Rails.application.routes.draw do
 
   root "public/posts#index"
 
-  namespace :public do
+  scope module: "public" do
     resources :users, only: [:mypage, :show, :favoindex, :edit, :update] do
-      resource :favorites, only: [:create, :destroy]
-      resources :relationships, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy]
       get "follows" => "relationships#follower", as: "follows"
       get "followers" => "relationships#followed", as: "followers"
     end
@@ -27,10 +26,11 @@ Rails.application.routes.draw do
     get "users/favoindex/:id" => "users#favoindex", as: "users_favoindex"
 
     resources :posts, only: [:index, :show, :create, :destroy] do
+      resource :favorites, only: [:create, :destroy]
       resource :post_comments, only: [:create, :destroy]
     end
 
-    resources :newses, only: [:index, :show]
+    resources :newss, only: [:index, :show]
     resources :searches, only: [:search]
     get "searches/search" => "searches#search"
 
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get "users/top" => "users#top"
 
     resources :messages, only: [:index, :show, :create, :destroy]
-    resources :newses, only: [:index, :show, :create, :destroy]
+    resources :newss, only: [:index, :show, :create, :destroy]
 
     resources :posts, only: [:index, :show, :destroy] do
       resource :post_comments, only: [:destroy]

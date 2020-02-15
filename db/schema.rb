@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(version: 2020_02_12_060149) do
     t.datetime "updated_at", null: false
     t.integer "visitor_id"
     t.integer "visited_id"
-    t.integer "favo_id"
-    t.integer "poscom_id"
+    t.integer "favorite_id"
+    t.integer "post_comment_id"
     t.integer "news_id"
     t.string "action"
     t.boolean "checked"
-    t.index ["favo_id"], name: "index_notices_on_favo_id"
+    t.index ["favorite_id"], name: "index_notices_on_favorite_id"
     t.index ["news_id"], name: "index_notices_on_news_id"
-    t.index ["poscom_id"], name: "index_notices_on_poscom_id"
+    t.index ["post_comment_id"], name: "index_notices_on_post_comment_id"
     t.index ["visited_id"], name: "index_notices_on_visited_id"
     t.index ["visitor_id"], name: "index_notices_on_visitor_id"
   end

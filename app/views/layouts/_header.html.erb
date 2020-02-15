@@ -27,14 +27,14 @@
         <% elsif user_signed_in? %>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Top" ,"/" %></li>
-            <li><%= link_to "Mypage" ,public_users_mypage_path(current_user.friendly_url) %></li>
-            <li><%= link_to "Notice" ,public_user_path(current_user.id) %></li>
+            <li><%= link_to "Mypage" ,users_mypage_path(current_user.friendly_url) %></li>
+            <li><%= link_to "Notice" ,notices_path(current_user.friendly_url) %></li>
             <li><%= link_to "Log out" ,destroy_user_session_path, method: :delete %></li>
           </ul>
         <% else %>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Top" ,"/" %></li>
-            <li><%= link_to "Infomation" ,"/" %></li>
+            <li><%= link_to "Infomation" , newss_index_path %></li>
             <li><%= link_to "Log in" ,new_user_session_path %></li>
             <li><%= link_to "Sign up" ,new_user_registration_path %></li>
           </ul>
