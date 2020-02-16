@@ -1,14 +1,25 @@
 <div class="row col-xs-3">
 	<div class="">
-		<% if owner_signed_in? %>
-		<% elsif user_signed_in? %>
+		<% if user_signed_in? %>
 			<table>
 				<tr><td><%= me.name %></td></tr>
 				<tr><td>@<%= me.friendly_url %></td></tr>
 				<tr><td><%= me.website %></td></tr>
 				<tr><td><%= me.introduction %></td></tr>
-				<tr><td>follow <%= me.follower.count %></td></tr>
-				<tr><td>folower<%= me.followed.count %></td></tr>
+				<tr>
+					<td>
+						<%= link_to user_followers_path(me.friendly_url) do %>
+							follow <%= me.follower.count %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= link_to user_follows_path(me.friendly_url) do %>
+							folower<%= me.followed.count %>
+						<% end %>
+					</td>
+				</tr>
 			</table>
 			<%= link_to "Setting" %>
 		<% else %>

@@ -1,0 +1,31 @@
+<div class="row col-xs-3">
+	<div class="">
+		<table>
+			<tr><td><%= me.name %></td></tr>
+			<tr><td>@<%= me.friendly_url %></td></tr>
+			<tr><td><%= me.website %></td></tr>
+			<tr><td><%= me.introduction %></td></tr>
+			<tr>
+				<td>
+					<%= link_to user_followers_path(me.friendly_url) do %>
+						Follow <%= me.follower.count %>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%= link_to user_follows_path(me.friendly_url) do %>
+						Folower<%= me.followed.count %>
+					<% end %>
+				</td>
+			</tr>
+		</table>
+			<% if current_user.following?(me) %>
+				<%= link_to "Unfollow", user_relationships_path(me.id), method: :delete, class: "btn btn-primary" %>
+			<% else %>
+				<%= link_to "Follow", user_relationships_path(me.id), method: :POST, class: "btn btn-success" %>
+			<% end %>
+	</div>
+	<div class="">
+	</div>
+</div>

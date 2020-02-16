@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
+    @me = current_user
   end
 
   def show

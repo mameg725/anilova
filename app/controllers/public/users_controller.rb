@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   def show
+    @user = User.friendly.find(params[:id])
   end
 
   def mypage
@@ -8,12 +9,6 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-  end
-
-  def follower
-  end
-
-  def followed
   end
 
   def favoindex

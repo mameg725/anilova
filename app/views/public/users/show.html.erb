@@ -1,2 +1,67 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<%= render "public/users/show_leftbar", me: @user %>
+
+
+<div class="col-xs-9" %>
+<% if @user.posts.count > 0 %>
+	<% @user.posts.each do |post| %>
+		<table>
+			<tbody>
+				<tr>
+					<td rowspan="5">
+						<%= link_to(post) do %>
+							<%= attachment_image_tag(post, :post_image, :fill, 200, 200, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+
+					<td>
+						<%= link_to(@user) do %>
+							<%= attachment_image_tag(@user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+							<%= @user.name %>
+							@<%= @user.friendly_url %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= link_to(post) do %>
+							<%= post.murmur %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<% post.tag_list.each do |tag| %>
+							<span><%= tag %></span>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td><%= post.created_at %></td>
+					<td>
+						<% if post.favorite_by?(current_user) %>
+				            <%= link_to post_favorites_path(post), method: :delete do %>
+								<span class="glyphicon glyphicon-heart">
+									<%= post.favorites.count%>
+								</span>
+							<% end %>
+						<% else %>
+							<%= link_to post_favorites_path(post), method: :post do %>
+								<span class="glyphicon glyphicon-heart-empty">
+									<%= post.favorites.count %>
+								</span>
+    			        	<% end %>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to "削除", post_path(post), method: :delete %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	<% end %>
+<% else %>
+	<p>Submit is nothing .</p>
+<% end %>
+</div>
