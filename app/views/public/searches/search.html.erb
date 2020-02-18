@@ -1,7 +1,12 @@
+<%= render "public/users/leftbar", me: current_user %>
+
 <% if @model == 'users' %>
-  <h3>Users search for '<%= @content %>'</h3>
-  <%= render 'public/users/index', users: @records %>
- <% else @model == 'posts' %>
-  <h3>Posts search for '<%= @content %>'</h3>
-    <%= render 'public/posts/index', posts: @records %>
- <% end %>
+	<h3>Users search for '<%= @content %>'</h3>
+	<%= render 'public/users/index', users: @records %>
+<% elsif @model == 'posts' %>
+	<h3>Posts search for '<%= @content %>'</h3>
+	<%= render 'public/posts/index', posts: @records %>
+<% elsif @model == "tags" %>
+	<h3>Tags search for '<%= @content %>'</h3>
+	<%= render 'public/posts/tag_index', tags: @records %>
+<% end %>

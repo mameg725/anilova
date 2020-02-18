@@ -1,2 +1,50 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<%= form_for(@user) do |f| %>
+  <%#= render 'layouts/errors', obj: @user %>
+
+  <div class="field">
+    <%= f.label :ProfileIcon %>
+    <%= f.attachment_field :profile_image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :UseName %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :UserID %>
+    <%= f.text_field :friendly_url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :website %>
+    <%= f.text_field :website %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %>
+    <%= f.text_area :introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Setting" %>
+  </div>
+<% end %>

@@ -30,7 +30,8 @@ Rails.application.routes.draw do
       resource :post_comments, only: [:create, :destroy]
     end
 
-    resources :newss, only: [:index, :show]
+    resources :newss, only: [:index, :show, :message]
+    get "newss/message/:id" => "newss#message", as: "newss_message"
     resources :searches, only: [:search]
     get "searches/search" => "searches#search"
 

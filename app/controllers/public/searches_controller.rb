@@ -1,33 +1,18 @@
 class Public::SearchesController < ApplicationController
   def search
-  	@model = params["search"]["model"]
+    @model = params["search"]["model"]
     @content = params["search"]["content"]
-    #@method = params["search"]["method"]
-    @records = search_for(@model, @content, @method)
+    @records = search_for(@model, @content)
   end
 
-  private
-  def search_for(model, content, method)
+
+  def search_for(model, content)
     if model == 'users'
-      if method == 'perfect'
-        User.where(name: content)
-      elsif method == 'forward'
-        User.where('name LIKE ?', content+'%')
-      elsif method == 'backward'
-        User.where('name LIKE ?', '%'+content)
-      else
-        User.where('name LIKE ?', '%'+content+'%')
-      end
+      User.where('name LIKE ?', '%'+content+'%')
     elsif model == 'posts'
-      if method == 'perfect'
-        Post.where(murmur: content)
-      elsif method == 'forward'
-        Post.where('murmur LIKE ?', content+'%')
-      elsif method == 'backward'
-        Post.where('murmur LIKE ?', '%'+content)
-      else
-        Post.where('murmur LIKE ?', '%'+content+'%')
-      end
+      Post.where('murmur LIKE ?', '%'+content+'%')
+    elsif model == "tags"
+      ActsAsTaggableOn::Tag.where("name LIKE ?", '%'+content+'%')
     end
   end
 end
