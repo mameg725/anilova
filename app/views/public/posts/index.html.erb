@@ -13,12 +13,27 @@
 					</td>
 				</tr>
 				<tr>
-
 					<td>
-						<%= link_to(post.user) do %>
+						<% if user_signed_in? %>
+							<% if post.user.id == current_user.id %>
+								<%= link_to users_mypage_path(current_user.friendly_url) do %>
+								<%= attachment_image_tag(post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+								<%= post.user.name %>
+								@<%= post.user.friendly_url %>
+								<% end %>
+							<% else %>
+								<%= link_to(post.user) do %>
+								<%= attachment_image_tag(post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+								<%= post.user.name %>
+								@<%= post.user.friendly_url %>
+								<% end %>
+							<% end %>
+						<% else %>
+							<%= link_to(post.user) do %>
 							<%= attachment_image_tag(post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
 							<%= post.user.name %>
 							@<%= post.user.friendly_url %>
+							<% end %>
 						<% end %>
 					</td>
 				</tr>

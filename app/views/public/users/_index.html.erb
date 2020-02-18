@@ -1,5 +1,13 @@
 <% users.each do |user| %>
-  <%= attachment_image_tag(user, :icon_image, :fill, 70, 70, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"70x70") %>
-  <%= user.name %>
-  @<%= user.friendly_url %>
+	<%= attachment_image_tag(user, :icon_image, :fill, 70, 70, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"70x70") %>
+	<%= user.name %>
+	@<%= user.friendly_url %>
+	<%= user.introduction %>
+	<% if user_signed_in? && user.id != current_user.id? %>
+		<% if current_user.following?(user) %>
+			<%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+		<% else %>
+			<%= link_to "Follow", user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
+		<% end %>
+	<% end %>
 <% end %>

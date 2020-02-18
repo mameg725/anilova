@@ -1,6 +1,6 @@
 class Public::RelationshipsController < ApplicationController
 	def create
-		current_user.follow(params[:user_id])
+		current_user.follow(params[:user_id]).created_notice_follow!(current_user,params[:user_id])
 		redirect_to request.referer
 	end
 

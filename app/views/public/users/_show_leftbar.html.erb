@@ -20,7 +20,7 @@
 				</td>
 			</tr>
 		</table>
-		<% if user_signed_in? && me.id == current_user.id? %>
+		<% if user_signed_in? %>
 			<% if current_user.following?(me) %>
 				<%= link_to "Unfollow", user_relationships_path(me.id), method: :delete, class: "btn btn-primary" %>
 			<% else %>

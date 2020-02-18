@@ -4,10 +4,6 @@
 	<% else %>
 		<%= render "public/users/show_leftbar", me: @post.user %>
 	<% end %>
-
-
-
-
 <% else %>
 	<%= render "public/users/leftbar", me: current_user %>
 <% end %>
@@ -27,15 +23,33 @@
 <% end %>
 </div>
 
-<div class="col-xs-3">
-	<%= attachment_image_tag(@post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
-	<%= @post.user.name %>
-	@<%= @post.user.friendly_url %><br>
-	<%= @post.created_at %>
-	<% @post.tag_list.each do |tag| %>
-		<span><%= tag %></span>
-	<% end %>
-	<%= @post.murmur %>
+<div class="row">
+
+		<%= attachment_image_tag(@post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+		<%= @post.user.name %>
+		@<%= @post.user.friendly_url %><br>
+		<%= @post.created_at %>
+		<% @post.tag_list.each do |tag| %>
+			<span><%= tag %></span>
+		<% end %>
+		<%= @post.murmur %>
+		<% if user_signed_in? %>
+			<% if @post.favorite_by?(current_user) %>
+				<%= link_to post_favorites_path(@post), method: :delete do %>
+					<span class="glyphicon glyphicon-heart">
+						<%= @post.favorites.count%>
+					</span>
+				<% end %>
+			<% else %>
+				<%= link_to post_favorites_path(@post), method: :post do %>
+					<span class="glyphicon glyphicon-heart-empty">
+						<%= @post.favorites.count %>
+					</span>
+				<% end %>
+			<% end %>
+		<% end %>
+
+
 
 	<% @post_comments.each do |post_comment| %>
 		<%= attachment_image_tag(post_comment.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
