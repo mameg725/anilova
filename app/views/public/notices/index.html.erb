@@ -1,2 +1,8 @@
-<%= render "layouts/leftbar", me: current_user %>
+<%= render "public/users/leftbar", me: current_user %>
 
+<% notice = @notice.where.not(visitor_id: current_user.id) %>
+<% if notice.exists? %>
+	<%= render "notice", notice: @notice %>
+<% else %>
+	<p>No notification !</p>
+<% end %>

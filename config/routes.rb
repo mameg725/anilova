@@ -39,8 +39,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:top, :index, :show]
     get "users/top" => "users#top"
+    resources :users, only: [:top, :index, :show]
 
     resources :messages, only: [:index, :show, :create, :destroy]
     resources :newss, only: [:index, :show, :create, :destroy]

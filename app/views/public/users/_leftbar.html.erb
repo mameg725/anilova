@@ -2,6 +2,11 @@
 	<div class="">
 		<% if user_signed_in? %>
 			<table>
+				<tr>
+					<td>
+						<%= attachment_image_tag(me, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+					</td>
+				</tr>
 				<tr><td><%= me.name %></td></tr>
 				<tr><td>@<%= me.friendly_url %></td></tr>
 				<tr><td><%= me.website %></td></tr>

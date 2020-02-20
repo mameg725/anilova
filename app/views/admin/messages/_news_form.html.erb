@@ -1,9 +1,4 @@
-<%= render "admin/users/leftbar" %>
-
-<%= @user.name %>
-
-<%#= render "news_form", message: @message %>
-<%= form_for(@message, url:"/admin/messages") do |f| %>
+<%= form_for(message, url:"/admin/messages") do |f| %>
 	<%= f.label "Title" %>
 	<%= f.text_field :title %>
 	<%= f.label "Text" %>

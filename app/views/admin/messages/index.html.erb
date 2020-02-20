@@ -1,2 +1,14 @@
-<h1>Admin::Messages#index</h1>
-<p>Find me in app/views/admin/messages/index.html.erb</p>
+<%= render "admin/users/leftbar" %>
+
+<%= form_for(@message, url:"/admin/messages") do |f| %>
+	<%= f.label "Title" %>
+	<%= f.text_field :title %>
+	<%= f.label "Text" %>
+	<%= f.text_field :news_text %>
+	<%= f.hidden_field :user_id, :value => 1 %>
+	<%= f.submit "Sent" %>
+<% end %>
+
+<% @messages.each do |news| %>
+	<%= news.title %>
+<% end %>

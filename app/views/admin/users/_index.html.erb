@@ -1,0 +1,7 @@
+<div class="col-xs-9">
+	<% User.all.each do |user| %>
+		<%= link_to admin_user_path(user) do %>
+		<%= user.name %>
+		<% end %>
+	<% end %>
+</div>

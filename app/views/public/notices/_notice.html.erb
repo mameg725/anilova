@@ -1,0 +1,36 @@
+<div class="col-xs-9">
+	<% @notice.each do |notice| %>
+		<% case notice.action %>
+		<% when "follow" then %>
+			<div class="row">
+				<%= link_to user_path(notice.visitor) do %>
+					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+					<%= notice.visitor.name %>
+				<% end %>
+				<p> さんが あなたをフォローしました。</p>
+			</div>
+		<% when "favorite" then %>
+			<div class="row">
+				<%= link_to user_path(notice.visitor) do %>
+					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+					<%= notice.visitor.name %>
+				<% end %>
+				<p> さんが あなたの投稿に いいねをつけました。</p>
+				<%= link_to post_path(notice.post) do %>
+					<%= notice.post.murmur %>
+				<% end %>
+			</div>
+		<% when "comment" then %>
+			<div class="row">
+				<%= link_to user_path(notice.visitor) do %>
+					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+					<%= notice.visitor.name %>
+				<% end %>
+				<p> さんが あなたの投稿に コメントしました。</p>
+				<%= link_to post_path(notice.post) do %>
+					<%= notice.post_comment.reaction %>
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

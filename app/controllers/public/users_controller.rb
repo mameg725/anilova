@@ -21,7 +21,6 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.friendly.find(params[:id])
     @user.update(user_params)
-    binding.pry
     redirect_to users_mypage_path(current_user.friendly_id)
   end
 
