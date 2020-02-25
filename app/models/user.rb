@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:friendly_url]
+  validates :name, presence: true, length: {in: 1..10}
+  validates :friendly_url, presence: true, length: {in: 3..10},
+              format: {with: /\A[a-zA-Z0-9]+\z/, message: "半角英数字で3~10文字で入力してください。"}
+  validates :introduction, length: {maximum: 100, message: "100字までで入力してください。"}
 
 
   acts_as_paranoid

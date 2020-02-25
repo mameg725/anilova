@@ -10,12 +10,12 @@ class Public::RelationshipsController < ApplicationController
 	end
 
 
-	def followed
+	def follower
 		@user = User.friendly.find(params[:user_id])
 		@users = @user.following_user
 	end
 
-	def follower
+	def followed
 		@user = User.friendly.find(params[:user_id])
 		@users = @user.follower_user
 

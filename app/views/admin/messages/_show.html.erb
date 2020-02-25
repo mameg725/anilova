@@ -1,0 +1,16 @@
+<table>
+	<tbody>
+		<% messages.order("id DESC").each do |news| %>
+		<tr>
+			<td>
+				<%= link_to admin_newss_path(news) do %>
+				<%= news.title %>
+				<% end %>
+			</td>
+			<td>
+				<%= news.created_at.to_s(:datetime_jp) %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

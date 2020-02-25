@@ -1,5 +1,10 @@
 <%= render "leftbar" %>
+<div class="content">
+	<div class="menu-bar slide-menu">
+		<%= link_to "Back", :back %>
+		User
+	</div>
 
-<%= @user.name %>
-<%= link_to "Destroy" %>
-<%= link_to "Message", admin_message_path(@user.friendly_url) %>
+	<%= render "show", user: @user %>
+	<%= render "admin/posts/index", posts: @user.posts %>
+</div>

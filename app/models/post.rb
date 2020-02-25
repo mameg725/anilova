@@ -3,6 +3,9 @@ class Post < ApplicationRecord
 	has_many :favorites, dependent: :destroy
 	has_many :notices, dependent: :destroy
 	belongs_to :user
+	validates :murmur, length: {maximum: 200, message: "200字までで入力してください。"}
+	validates :dopost, presence: true
+
 	acts_as_taggable
 	attachment :post_image
 	def favorite_by?(user)
@@ -43,5 +46,10 @@ class Post < ApplicationRecord
 			notice.checked = true
 		end
 		notice.save if notice.valid?
+	end
+
+	private
+	def dopost
+		murmur.presence or post_image_id.presence
 	end
 end

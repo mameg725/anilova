@@ -2,39 +2,45 @@
 <table>
 	<tbody>
 		<tr>
-			<td rowspan="5">
+			<td rowspan="5" height="250" width="260">
 				<%= link_to(post) do %>
-				<%= attachment_image_tag(post, :post_image, :fill, 200, 200, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
-				<% end %>
-			</td>
-		</tr>
-		<tr>
-
-			<td>
-				<%= link_to(post.user) do %>
-				<%= attachment_image_tag(post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
-				<%= post.user.name %>
-				@<%= post.user.friendly_url %>
+				<%= attachment_image_tag(post, :post_image, :fill, 200, 200, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size: "200x200") %>
 				<% end %>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<%= link_to(post) do %>
+				<% if user_signed_in? && post.user_id == current_user.id %>
+					<%= link_to users_mypage_path(current_user.friendly_url) do %>
+					<%= attachment_image_tag(post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+					<%= post.user.name %>
+					@<%= post.user.friendly_url %><br>
+					<% end %>
+				<% else %>
+					<%= link_to(post.user) do %>
+					<%= attachment_image_tag(post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+					<%= post.user.name %>
+					@<%= post.user.friendly_url %><br>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<%= post.murmur %>
-				<% end %>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<% post.tag_list.each do |tag| %>
-				<span><%= tag %></span>
+				<span><%= link_to tag, posts_path(tag_name: tag) %></span>
 				<% end %>
 			</td>
 		</tr>
 		<tr>
-			<td><%= post.created_at %></td>
-			<td>
+			<td width="400"><%= post.created_at.to_s(:datetime_jp) %></td>
+			<td width="100">
+				<% if user_signed_in? %>
 				<% if post.favorite_by?(current_user) %>
 				<%= link_to post_favorites_path(post), method: :delete do %>
 				<span class="glyphicon glyphicon-heart">
@@ -48,9 +54,12 @@
 				</span>
 				<% end %>
 				<% end %>
+				<% end %>
 			</td>
-			<td>
-				<%= link_to "削除", post_path(post), method: :delete %>
+			<td width="100">
+				<% if user_signed_in? && post.user_id == current_user.id %>
+					<%= link_to "Delete", post_path(post), method: :delete %>
+				<% end %>
 			</td>
 		</tr>
 	</tbody>

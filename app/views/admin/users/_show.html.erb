@@ -1,0 +1,36 @@
+<table>
+	<tbody>
+		<tr>
+			<td rowspan="4" height="100" width="100">
+				<%= attachment_image_tag(user, :icon_image, :fill, 70, 70, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"70x70") %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= user.name %>
+				@<%= user.friendly_url %>
+				<% if user.deleted_at.present? %>
+				退会済み
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= user.introduction %>
+			</td>
+		</tr>
+		<tr>
+			<td width="300">
+				<%= user.website %>
+			</td>
+			<% if user.id != 1 %>
+			<td width="100">
+				<%= link_to "Message", admin_message_path(user.friendly_url) %>
+			</td>
+			<td>
+				<%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "本当に退会させますか？"}, class: "btn btn-danger" %>
+			</td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>

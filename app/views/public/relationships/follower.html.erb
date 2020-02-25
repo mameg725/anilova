@@ -1,8 +1,8 @@
-<% if @user.id == current_user.id? %>
-	<%= render "public/users/show_leftbar", me: current_user %>
-<% else %>
-	<%= render "public/users/show_leftbar", me: @user %>
-<% end %>
+フォローした人の一覧
+
+
+<%= render "public/users/leftbar", me: @user %>
+
 <% if @users.count > 0 %>
   <%= render "follow", users: @users %>
 <% else %>

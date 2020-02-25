@@ -1,7 +1,32 @@
-<div class="col-xs-9">
-	<% User.all.each do |user| %>
-		<%= link_to admin_user_path(user) do %>
-		<%= user.name %>
-		<% end %>
+<table>
+	<tbody>
+	<% users.each do |user| %>
+	<tr>
+		<td rowspan="4" height="100" width="100">
+			<%= attachment_image_tag(user, :icon_image, :fill, 70, 70, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"70x70") %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= link_to admin_user_path(user.friendly_url) do %>
+			<%= user.name %>
+			@<%= user.friendly_url %>
+			<% end %>
+			<% if user.deleted_at.present? %>
+			退会済み
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td width="500"><%= user.introduction %></td>
+	</tr>
+	<% if user.id != 1 %>
+	<tr>
+		<td>
+			<%= link_to "Message", admin_message_path(user.friendly_url) %>
+		</td>
+	</tr>
 	<% end %>
-</div>
+	<% end %>
+	</tbody>
+</table>

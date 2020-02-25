@@ -1,30 +1,48 @@
 <header>
   <div class="header" id="header">
     <div class="container">
-      <div id="slidemenu">
-        <div class="navbar-text navbar-left">
-          <span class="navbar-title">
-            <% if owner_signed_in? %>
-              <%= link_to "LOGO", admin_users_top_path %>
-            <% else %>
-              <%= link_to "LOGO","/" %>
+      <div class="navbar-text navbar-left">
+        <span class="navbar-title">
+          <% if owner_signed_in? %>
+            <%= link_to admin_users_top_path do %>
+              <%= image_tag "Anilova.jpg", size: "100x100" %>
             <% end %>
-          </span>
-        </div>
+          <% else %>
+            <%= link_to "/" do %>
+              <%= image_tag "Anilova.jpg", size: "100x100" %>
+            <% end %>
+          <% end %>
+        </span>
+      </div>
+      <div id="slidemenu">
         <% if user_signed_in? %>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Top" ,"/" %></li>
-            <li><%= link_to "Mypage" ,users_mypage_path(current_user.friendly_url) %></li>
-            <li><%= link_to "Infomation" , newss_index_path %></li>
-            <li><%= link_to "Message" , newss_message_path(current_user.friendly_url) %></li>
-            <li><%= link_to "Notice" ,notices_path %></li>
-            <li><%= link_to "Log out" ,destroy_user_session_path, method: :delete %></li>
-          </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Top" ,"/" %></li>
+          <li><%= link_to "Mypage" ,users_mypage_path(current_user.friendly_url) %></li>
+          <li><%= link_to "Infomation" , newss_index_path %></li>
+          <li><%= link_to "Message" , newss_message_path(current_user.friendly_url) %></li>
+          <li><%= link_to "Notice" ,notices_path %></li>
+          <li><%= link_to "Log out" ,destroy_user_session_path, method: :delete %></li>
+        </ul>
+        <div class="search-form" style="margin-top: 70px; text-align: center;">
+          <%= form_tag(searches_search_path, method: :get) do %>
+          <%= text_field_tag "search[content]" %>
+          <%= select_tag "search[model]", options_for_select({ "User" => "users", "Post" => "posts", "Tag" => "tags" }) %>
+          <%= submit_tag "Seach" %>
+          <% end %>
+        </div>
         <% elsif owner_signed_in? %>
           <ul class="nav navbar-nav navbar-right" data-hover="dropdown"data-animations="zoomIn fadeIn fadeInUp fadeIn">
             <li><%= link_to "Top", admin_users_top_path %></li>
             <li><%= link_to "Log out", destroy_owner_session_path, method: :delete %></li>
           </ul>
+          <div class="search-form" style="margin-top: 70px; text-align: center;">
+            <%= form_tag(admin_searches_search_path, method: :get) do %>
+            <%= text_field_tag "search[content]" %>
+            <%= select_tag "search[model]", options_for_select({ "User" => "users", "Post" => "posts", "Tag" => "tags" }) %>
+            <%= submit_tag "Seach" %>
+            <% end %>
+        </div>
         <% else %>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Top" ,"/" %></li>
@@ -32,15 +50,14 @@
             <li><%= link_to "Log in" ,new_user_session_path %></li>
             <li><%= link_to "Sign up" ,new_user_registration_path %></li>
           </ul>
+          <div class="search-form" style="margin-top: 70px; text-align: center;">
+            <%= form_tag(searches_search_path, method: :get) do %>
+            <%= text_field_tag "search[content]" %>
+            <%= select_tag "search[model]", options_for_select({ "User" => "users", "Post" => "posts", "Tag" => "tags" }) %>
+            <%= submit_tag "Seach" %>
+            <% end %>
+          </div>
         <% end %>
-        <div class="search-form" style="margin-top: 70px; text-align: center;">
-          <%= form_tag(searches_search_path, method: :get) do %>
-            <%= text_field_tag 'search[content]' %>
-            <%= select_tag 'search[model]', options_for_select({ "User" => "users", "Post" => "posts", "Tag" => "tags" }) %>
-            <%#= select_tag 'search[method]', options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
-            <%= submit_tag '検索' %>
-          <% end %>
-        </div>
       </div>
     </div>
   </div>

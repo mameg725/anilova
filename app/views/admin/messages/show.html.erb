@@ -1,13 +1,8 @@
 <%= render "admin/users/leftbar" %>
-
-<%= @user.name %>
-
-<%#= render "news_form", message: @message %>
-<%= form_for(@message, url:"/admin/messages") do |f| %>
-	<%= f.label "Title" %>
-	<%= f.text_field :title %>
-	<%= f.label "Text" %>
-	<%= f.text_field :news_text %>
-	<%= f.hidden_field :user_id, :value => @user.id %>
-	<%= f.submit "Sent" %>
+<div class="content">
+<%= render "admin/users/show", user: @user %>
+<% if @user.deleted_at.nil? %>
+<%= render "news_form", message: @message, user: @user %>
 <% end %>
+<%= render "show", messages: @user.newss %>
+</div>

@@ -1,5 +1,5 @@
 class Public::NoticesController < ApplicationController
   def index
-  	@notice = current_user.passive_notice.all
+  	@notice = Notice.where.not(visitor_id: current_user.id).order("id DESC")
   end
 end

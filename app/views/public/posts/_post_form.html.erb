@@ -1,20 +1,22 @@
 <%= form_for(post) do |f| %>
+<%= render 'layouts/error', obj: current_user %>
 <table>
 	<tbody>
 		<tr>
 			<td>
-				<%= f.attachment_field :post_image %>
+				<img id="image_prev" width="200" height="200">
+				<%= f.attachment_field :post_image, class: "image_file" %>
 			</td>
 			<td>
 				<%= f.label :murmur, "Text" %><br>
-				<%= f.text_area :murmur %>
+				<%= f.text_area :murmur, size: "60x8", placeholder: "200字までで入力してください。" %>
 			</td>
 		</tr>
 		<tr>
 			<td><%= f.submit "投稿" %></td>
 			<td>
 				<%= f.label :tag_list, "Tag" %>
-				<%= text_field_tag "post[tag_list", post.tag_list, :class => "form-control" %>
+				<%= text_field_tag "post[tag_list", post.tag_list, :class => "form-control", placeholder: "半角コンマ,で区切ってください。" %>
 			</td>
 		</tr>
 	</tbody>

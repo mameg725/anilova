@@ -7,6 +7,40 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Owner.create!(
-	email: 'aaa@gmail.com',
-	password: 'aaaaaa'
+	email: "anilova@gmail.com",
+	password: "aaaaaa"
 )
+
+User.create!([
+	{
+	name: "Anilova",
+	friendly_url: "anilova",
+	introduction: "管理者用ユーザー",
+	website: "http://18.216.190.125/",
+	email: "anilova.user@gmail.com",
+	password: "aaaaaa"
+	},
+	{
+	name: "ユーザー１",
+	friendly_url: "aaa",
+	introduction: "ユーザー1",
+	email: "aaa@gmail.com",
+	password: "111111"
+	},
+	{
+	name: "ユーザー２",
+	friendly_url: "bbb",
+	introduction: "ユーザー2",
+	email: "bbb@gmail.com",
+	password: "111111"
+	},
+	{
+	name: "ユーザー３",
+	friendly_url: "ccc",
+	introduction: "ユーザー3",
+	email: "ccc@gmail.com",
+	password: "333333"
+	}]
+)
+
+

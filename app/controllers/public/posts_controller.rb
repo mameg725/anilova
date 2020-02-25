@@ -1,11 +1,15 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order("id DESC")
     @me = current_user
+    if params[:tag_name]
+      @posts = @posts.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
     @post_comment = PostComment.new
     @post_comments = @post.post_comments
   end

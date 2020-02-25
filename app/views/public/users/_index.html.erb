@@ -1,13 +1,37 @@
 <% users.each do |user| %>
-	<%= attachment_image_tag(user, :icon_image, :fill, 70, 70, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"70x70") %>
-	<%= user.name %>
-	@<%= user.friendly_url %>
-	<%= user.introduction %>
-	<% if user_signed_in? && user.id != current_user.id? %>
-		<% if current_user.following?(user) %>
-			<%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
-		<% else %>
-			<%= link_to "Follow", user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
-		<% end %>
-	<% end %>
+<table>
+	<tbody>
+		<tr>
+			<td rowspan="5" height="100" width="300">
+				<% if user_signed_in? && user.id == current_user.id %>
+					<%= link_to users_mypage_path(current_user.friendly_url) do %>
+					<%= attachment_image_tag(post.user, :icon_image, :fill, 70, 70, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"70x70") %>
+					<%= user.name %>
+					@<%= user.friendly_url %><br>
+					<% end %>
+				<% else %>
+					<%= link_to(user) do %>
+					<%= attachment_image_tag(user, :icon_image, :fill, 70, 70, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"70x70") %>
+					<%= user.name %>
+					@<%= user.friendly_url %><br>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= user.introduction %>
+			</td>
+			<td>
+				<% if user_signed_in? && user.id != current_user.id? %>
+					<% if current_user.following?(user) %>
+						<%= link_to "Unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+					<% else %>
+						<%= link_to "Follow", user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+	</tbody>
+</table>
 <% end %>

@@ -1,0 +1,16 @@
+<table>
+	<tbody>
+		<% messages.each do |news| %>
+		<tr>
+			<td height="30" width="400">
+				<%= link_to newss_path(news) do %>
+				<%= news.title %>
+				<% end %>
+			</td>
+			<td>
+				<%= news.created_at.to_s(:datetime_jp) %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -1,5 +1,6 @@
 <%= render "admin/users/leftbar" %>
 
+<div class="content">
 <%= form_for(@message, url:"/admin/messages") do |f| %>
 	<%= f.label "Title" %>
 	<%= f.text_field :title %>
@@ -12,3 +13,4 @@
 <% @messages.each do |news| %>
 	<%= news.title %>
 <% end %>
+</div>

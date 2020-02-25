@@ -17,13 +17,14 @@ Rails.application.routes.draw do
   root "public/posts#index"
 
   scope module: "public" do
-    resources :users, only: [:mypage, :show, :favoindex, :edit, :update] do
+    resources :users, only: [:mypage, :show, :favoindex, :followpost, :edit, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]
       get "follows" => "relationships#follower", as: "follows"
       get "followers" => "relationships#followed", as: "followers"
     end
     get "users/mypage/:id" => "users#mypage", as: "users_mypage"
     get "users/favoindex/:id" => "users#favoindex", as: "users_favoindex"
+    get "users/followpost/:id" => "users#followpost", as: "users_followpost"
 
     resources :posts, only: [:index, :show, :create, :destroy] do
       resource :favorites, only: [:create, :destroy]

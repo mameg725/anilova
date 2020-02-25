@@ -1,5 +1,5 @@
 <%= render "public/users/leftbar", me: current_user %>
 
-<% @messages.each do |news| %>
-	<%= news.title %>
-<% end %>
+<div class="content">
+<%= render "index", messages: @messages %>
+</div>
