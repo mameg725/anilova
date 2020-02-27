@@ -24,4 +24,12 @@ class Owners::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def after_sign_in_path_for(_resource)
+    admin_users_top_path
+  end
+
+  def after_sign_out_path_for(_resource)
+    new_owner_session_path
+  end
 end

@@ -1,0 +1,23 @@
+<table>
+	<tbody>
+		<% messages.order("id DESC").each do |news| %>
+		<tr height="50">
+			<% if news.user_id != 1 %>
+			<td width="150">
+				<%= link_to admin_user_path(news.user) do %>
+				<%= news.user.name %>
+				<% end %>
+			</td>
+			<% end %>
+			<td width="350">
+				<%= link_to admin_newss_path(news) do %>
+				<%= news.title %>
+				<% end %>
+			</td>
+			<td>
+				<%= news.created_at.to_s(:datetime_jp) %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

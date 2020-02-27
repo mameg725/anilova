@@ -1,2 +1,9 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<%= render "public/users/leftbar", me: @me %>
+
+<div class="col-xs-9 content" %>
+<% if @posts.count > 0 %>
+<%= render "index", posts: @posts %>
+<% else %>
+	<p>Let's submit !</p>
+<% end %>
+</div>

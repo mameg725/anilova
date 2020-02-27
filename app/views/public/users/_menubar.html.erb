@@ -1,0 +1,10 @@
+<div class="menu-bar slide-menu">
+	<%= link_to "Back", :back %>
+	<% if user_signed_in? && user.id == current_user.id %>
+	<%= link_to "My Post", users_mypage_path(user.friendly_url) %>
+	<%= link_to "Follow Post", users_followpost_path(user.friendly_url) %>
+	<% else %>
+	<%= link_to "User Post", user_path(user.friendly_url) %>
+	<% end %>
+	<%= link_to "Favorite Post", users_favoindex_path(user.friendly_url) %>
+</div>

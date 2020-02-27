@@ -1,2 +1,12 @@
-<h1>Public::Users#favoindex</h1>
-<p>Find me in app/views/public/users/favoindex.html.erb</p>
+<%= render "leftbar", me: @user %>
+<div class="col-xs-9 content">
+	<% if user_signed_in? && @user.id == current_user.id %>
+	<%= render "public/posts/post_form", post: @post %>
+	<% end %>
+	<%= render "public/users/menubar", user: @user %>
+	<% if @user.favorites.count > 0 %>
+		<%= render "favo_post", favorites: @favorites, post: @post %>
+	<% else %>
+		<p>Let's discover Favorite !</p>
+	<% end %>
+</div>

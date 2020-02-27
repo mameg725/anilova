@@ -6,8 +6,8 @@ class CreateNotices < ActiveRecord::Migration[5.2]
 
       t.integer :visitor_id
       t.integer :visited_id
-      t.integer :favo_id
-      t.integer :poscom_id
+      t.integer :post_id
+      t.integer :post_comment_id
       t.integer :news_id
       t.string :action
       t.boolean :checked
@@ -15,8 +15,8 @@ class CreateNotices < ActiveRecord::Migration[5.2]
 
     add_index :notices, :visitor_id
     add_index :notices, :visited_id
-    add_index :notices, :favo_id
-    add_index :notices, :poscom_id
+    add_index :notices, :post_id
+    add_index :notices, :post_comment_id
     add_index :notices, :news_id
   end
 end

@@ -1,2 +1,43 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<%= render "public/users/leftbar", me: @user %>
+
+
+<div class="col-xs-9 content">
+<%= render "menubar", user: @user %>
+<% if user_signed_in? %>
+<% else %>
+<table>
+<tbody>
+	<tr>
+		<td rowspan="4" width="200">
+			<%= attachment_image_tag(@user, :icon_image, :fill, 150, 150, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"150x150") %>
+		</td>
+	</tr>
+	<tr>
+		<td height="20">
+			<%= @user.name %>
+		</td>
+	</tr>
+	<tr>
+		<td height="30">
+			@<%= @user.friendly_url %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= @user.introduction %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= @user.website %>
+		</td>
+	</tr>
+</tbody>
+</table>
+<% end %>
+<% if @user.posts.count > 0 %>
+	<%= render "public/posts/index", posts: @user.posts %>
+<% else %>
+	<p>Submit is nothing .</p>
+<% end %>
+</div>

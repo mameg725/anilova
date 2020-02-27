@@ -1,2 +1,12 @@
-<h1>Admin::Searches#search</h1>
-<p>Find me in app/views/admin/searches/search.html.erb</p>
+<%= render "admin/users/leftbar" %>
+
+<% if @model == 'users' %>
+	<h3>Users search for '<%= @content %>'</h3>
+	<%= render 'admin/users/index', users: @records %>
+<% elsif @model == 'posts' %>
+	<h3>Posts search for '<%= @content %>'</h3>
+	<%= render 'admin/posts/index', posts: @records %>
+<% elsif @model == "tags" %>
+	<h3>Tags search for '<%= @content %>'</h3>
+	<%= render 'admin/posts/tag_index', tags: @records %>
+<% end %>

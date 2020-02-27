@@ -1,0 +1,67 @@
+<% favorites.each do |favorite| %>
+<table>
+	<tbody>
+		<tr>
+			<td rowspan="5" height="250" width="260">
+				<%= link_to(favorite.post) do %>
+				<%= attachment_image_tag(favorite.post, :post_image, :fill, 200, 200, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"200x200") %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<% if user_signed_in? && favorite.post.user_id == current_user.id %>
+				<%= link_to(favorite.post.user) do %>
+				<%= attachment_image_tag(favorite.post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+				<%= favorite.post.user.name %>
+				@<%= favorite.post.user.friendly_url %>
+				<% end %>
+				<% else %>
+				<%= link_to(favorite.post.user) do %>
+				<%= attachment_image_tag(favorite.post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+				<%= favorite.post.user.name %>
+				@<%= favorite.post.user.friendly_url %>
+				<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= link_to(favorite.post) do %>
+				<%= favorite.post.murmur %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<% favorite.post.tag_list.each do |tag| %>
+				<span><%= tag %></span>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td width="400"><%= favorite.post.created_at.to_s(:datetime_jp) %></td>
+			<% if user_signed_in? %>
+			<td width="100">
+				<% if favorite.post.favorite_by?(current_user) %>
+				<%= link_to post_favorites_path(favorite.post), method: :delete do %>
+				<span class="glyphicon glyphicon-heart">
+					<%= favorite.post.favorites.count%>
+				</span>
+				<% end %>
+				<% else %>
+				<%= link_to post_favorites_path(favorite.post), method: :post do %>
+				<span class="glyphicon glyphicon-heart-empty">
+					<%= favorite.post.favorites.count %>
+				</span>
+				<% end %>
+				<% end %>
+			</td>
+			<td width="100">
+				<%= link_to "Delete", post_path(favorite.post), method: :delete %>
+			</td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+<% end %>

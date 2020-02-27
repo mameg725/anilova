@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Favorite < ApplicationRecord
-	has_many :notices, dependent: :destroy
-	belongs_to :user
-	belongs_to :post
+  belongs_to :user
+  belongs_to :post
 end

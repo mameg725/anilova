@@ -1,0 +1,16 @@
+<table>
+	<tbody>
+		<% post_comments.each do |post_comment| %>
+		<tr>
+			<td>
+				<%= attachment_image_tag(post_comment.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+				<%= post_comment.user.name %>
+				<%= post_comment.user.friendly_url %>
+
+				<%= post_comment.reaction %>
+				<%= link_to "削除", post_post_comments_path(post_comment.id), method: :delete %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+	<table>

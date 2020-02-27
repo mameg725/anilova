@@ -1,0 +1,20 @@
+<%= form_for(message, url:"/admin/messages") do |f| %>
+<table>
+	<tbody>
+		<tr>
+			<td>
+				<%= f.label "Title" %><br>
+				<%= f.text_field :title, :size=>"70" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.label "Text" %><br>
+				<%= f.text_area :news_text, size: "70x7" %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+	<%= f.hidden_field :user_id, :value => user.id %>
+	<%= f.submit "Sent" %>
+<% end %>

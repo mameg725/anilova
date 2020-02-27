@@ -1,2 +1,8 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<%= render "admin/users/leftbar" %>
+<div class="col-xs-9">
+	<%= link_to "Back", :back %>
+	User
+	<%= render "admin/users/show", user: @post.user %>
+	<%= render "admin/posts/post", post: @post %>
+	<%= render "comment", post_comments: @post_comments %>
+</div>

@@ -1,2 +1,9 @@
-<h1>Admin::Messages#show</h1>
-<p>Find me in app/views/admin/messages/show.html.erb</p>
+<%= render "admin/users/leftbar" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+<%= render "admin/users/show", user: @user %>
+<% if @user.deleted_at.nil? %>
+<%= render "news_form", message: @message, user: @user %>
+<% end %>
+<%= render "show", messages: @messages %>
+</div>

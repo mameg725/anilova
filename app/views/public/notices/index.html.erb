@@ -1,2 +1,10 @@
-<h1>Public::Notices#index</h1>
-<p>Find me in app/views/public/notices/index.html.erb</p>
+<%= render "public/users/leftbar", me: current_user %>
+
+<div class="content">
+<% notice = @notice.where.not(visitor_id: current_user.id) %>
+<% if notice.exists? %>
+	<%= render "notice", notices: @notice %>
+<% else %>
+	<p>No notification !</p>
+<% end %>
+</div>

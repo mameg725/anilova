@@ -1,2 +1,18 @@
-<h1>Admin::Newss#show</h1>
-<p>Find me in app/views/admin/newss/show.html.erb</p>
+<%= render "admin/users/leftbar" %>
+<div class="content">
+	<table>
+		<tbody>
+			<tr>
+				<td height="30"><%= @news.title %></td>
+			</tr>
+			<tr>
+				<td height="100">
+					<%= @news.created_at.to_s(:datetime_jp) %>
+				</td>
+			</tr>
+			<tr>
+				<td width="700"><%= @news.news_text %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

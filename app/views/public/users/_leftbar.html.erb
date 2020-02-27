@@ -1,0 +1,55 @@
+<div class="row col-xs-3 center">
+	<div class="">
+		<% if user_signed_in? %>
+			<table>
+				<tr>
+					<td>
+						<%= attachment_image_tag(me, :icon_image, :fill, 150, 150, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+					</td>
+				</tr>
+				<tr><td><%= me.name %></td></tr>
+				<tr><td>@<%= me.friendly_url %></td></tr>
+				<tr><td><%= me.website %></td></tr>
+				<tr><td width="200"><%= me.introduction %></td></tr>
+				<tr>
+					<td>
+						<%= link_to user_follows_path(me.friendly_url) do %>
+							follow <%= me.follower.count %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= link_to user_followers_path(me.friendly_url) do %>
+							folower<%= me.followed.count %>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+			<% if me.id == current_user.id %>
+				<%= link_to "Setting", edit_user_path(current_user.friendly_url) %>
+			<% else %>
+				<% if current_user.following?(me) %>
+					<%= link_to "Unfollow", user_relationships_path(me.id), method: :delete, class: "btn btn-primary" %>
+				<% else %>
+					<%= link_to "Follow", user_relationships_path(me.id), method: :POST, class: "btn btn-success" %>
+				<% end %>
+			<% end %>
+		<% else %>
+			<%= link_to "ログインはこちらから", new_user_session_path %><br>
+			<%= link_to "新規登録はこちらから", new_user_registration_path %>
+		<% end %>
+	</div>
+	<div class="">
+		<table>
+			<tr><th height="40">オススメタグ</th></tr>
+			<% ActsAsTaggableOn::Tag.most_used(5).each do |tag| %>
+			<tr>
+				<td>
+					<%= link_to tag, posts_path(tag_name: tag.name) %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
