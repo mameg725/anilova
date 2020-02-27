@@ -1,5 +1,4 @@
 <%= render "public/users/leftbar", me: current_user %>
-
 <div class="content">
 <div class="col-xs-7">
 	<table>
@@ -10,7 +9,7 @@
 		</tr>
 		<% if user_signed_in? %>
 		<tr>
-			<td>
+			<td height="70">
 				<%= attachment_image_tag(current_user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
 				<%= current_user.name %>
 				@<%= current_user.friendly_url %>
@@ -18,8 +17,9 @@
 		</tr>
 		<tr>
 			<td>
+				<p><%= notice %></p>
 				<%= form_for [@post, @post_comment] do |f| %>
-					<%= f.text_area :reaction, size: "50", placeholder: "コメント" %>
+					<%= f.text_area :reaction, size: "50", placeholder: "コメントは100字までで入力してください。" %>
 					<%= f.submit "Sent" %>
 				<% end %>
 			</td>
@@ -88,6 +88,9 @@
 				@<%= post_comment.user.friendly_url %>
 				<% end %>
 			</td>
+		</tr>
+		<tr>
+			<td><%= post_comment.created_at.to_s(:datetime_jp) %></td>
 		</tr>
 		<tr width="30">
 			<td height="50">

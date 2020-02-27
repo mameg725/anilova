@@ -1,16 +1,7 @@
 <%= render "admin/users/leftbar" %>
 
 <div class="content">
-<%= form_for(@message, url:"/admin/messages") do |f| %>
-	<%= f.label "Title" %>
-	<%= f.text_field :title %>
-	<%= f.label "Text" %>
-	<%= f.text_field :news_text %>
-	<%= f.hidden_field :user_id, :value => 1 %>
-	<%= f.submit "Sent" %>
-<% end %>
 
-<% @messages.each do |news| %>
-	<%= news.title %>
-<% end %>
+<%= render "show", messages: @messages %>
+
 </div>

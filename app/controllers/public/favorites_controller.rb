@@ -1,16 +1,19 @@
-class Public::FavoritesController < ApplicationController
-	def create
-		post = Post.find(params[:post_id])
-		favorite = current_user.favorites.new(post_id: post.id)
-		favorite.save
-		post.created_notice_favorite!(current_user)
-		redirect_to request.referer
-	end
+# frozen_string_literal: true
 
-	def destroy
-		post = Post.find(params[:post_id])
-		favorite = current_user.favorites.find_by(post_id: post.id)
-		favorite.destroy
-		redirect_to request.referer
-	end
+class Public::FavoritesController < ApplicationController
+  before_action :authenticate_user!
+  def create
+    post = Post.find(params[:post_id])
+    favorite = current_user.favorites.new(post_id: post.id)
+    favorite.save
+    post.created_notice_favorite!(current_user)
+    redirect_to request.referer
+  end
+
+  def destroy
+    post = Post.find(params[:post_id])
+    favorite = current_user.favorites.find_by(post_id: post.id)
+    favorite.destroy
+    redirect_to request.referer
+  end
 end

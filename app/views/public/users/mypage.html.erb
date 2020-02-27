@@ -1,6 +1,6 @@
-<%= render "leftbar", me: current_user %>
+<%= render "leftbar", me: @user%>
 <div class="col-xs-9 content">
 <%= render "public/posts/post_form", post: @post %>
-<%= render "public/users/menubar", me: current_user %>
+<%= render "public/users/menubar", user: @user %>
 <%= render "public/posts/index", posts: current_user.posts %>
 </div>

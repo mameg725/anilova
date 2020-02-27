@@ -1,7 +1,8 @@
 <%= render "public/users/leftbar", me: @user %>
 
 
-<div class="content">
+<div class="col-xs-9 content">
+<%= render "menubar", user: @user %>
 <% if user_signed_in? %>
 <% else %>
 <table>

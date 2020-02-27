@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!, only: %i[create destroy]
   def index
     @posts = Post.all.order("id DESC")
     @me = current_user
-    if params[:tag_name]
-      @posts = @posts.tagged_with("#{params[:tag_name]}")
-    end
+    @posts = @posts.tagged_with(params[:tag_name].to_s) if params[:tag_name]
   end
 
   def show
@@ -15,14 +16,10 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-  	@post = Post.new(post_params)
-  	@post.user_id = current_user.id
-  		if @post.save
-  			redirect_to request.referer
-  		else
-
-  			redirect_to request.referer
-      end
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.save
+    redirect_to request.referer
   end
 
   def destroy
@@ -32,6 +29,7 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:user_id, :murmur, :post_image, :tag_list)
   end

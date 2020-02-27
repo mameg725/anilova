@@ -41,6 +41,7 @@
 		</tr>
 		<tr>
 			<td width="400"><%= favorite.post.created_at.to_s(:datetime_jp) %></td>
+			<% if user_signed_in? %>
 			<td width="100">
 				<% if favorite.post.favorite_by?(current_user) %>
 				<%= link_to post_favorites_path(favorite.post), method: :delete do %>
@@ -49,7 +50,7 @@
 				</span>
 				<% end %>
 				<% else %>
-				<%= link_to post_favorites_path(post), method: :post do %>
+				<%= link_to post_favorites_path(favorite.post), method: :post do %>
 				<span class="glyphicon glyphicon-heart-empty">
 					<%= favorite.post.favorites.count %>
 				</span>
@@ -59,6 +60,7 @@
 			<td width="100">
 				<%= link_to "Delete", post_path(favorite.post), method: :delete %>
 			</td>
+			<% end %>
 		</tr>
 	</tbody>
 </table>

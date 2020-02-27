@@ -2,9 +2,10 @@
 
 
 <%= render "public/users/leftbar", me: @user %>
-
+<div class="content">
 <% if @users.count > 0 %>
   <%= render "follow", users: @users %>
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
+</div>

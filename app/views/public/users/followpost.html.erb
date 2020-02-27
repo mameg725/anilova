@@ -1,7 +1,9 @@
 <%= render "leftbar", me: @me %>
 <div class="col-xs-9 content">
+<% if @user = current_user %>
 <%= render "public/posts/post_form", post: @post %>
-<%= render "menubar", me: current_user %>
+<% end %>
+<%= render "menubar", user: @user %>
 <% @follows.each do |user| %>
 	<% @followpost = Post.where(user_id: user.id).limit(1) %>
 	<%= render "public/posts/index", posts: @followpost %>

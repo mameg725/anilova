@@ -1,5 +1,10 @@
 <%= render "leftbar", me: current_user %>
 <div class="content edit">
+  <div class="menu-bar slide-bar">
+    <%= link_to "Back", :back %>
+    Setting
+  </div>
+
 <%= form_for(@user) do |f| %>
   <%= render 'layouts/error', obj: @user %>
 <table>

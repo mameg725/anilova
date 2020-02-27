@@ -61,7 +61,8 @@ class Owners::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+
   def configure_permitted_parameters
-  devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :friendly_url, :email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name friendly_url email])
   end
 end

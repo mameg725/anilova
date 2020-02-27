@@ -1,4 +1,8 @@
 <%= render "leftbar" %>
 <div class="content">
-<%= render "admin/posts/index", posts: @posts %>
+	<div class="menu-bar slide-menu">
+		<%= link_to "Back", :back %>
+		Post
+	</div>
+	<%= render "admin/posts/index", posts: @posts %>
 </div>

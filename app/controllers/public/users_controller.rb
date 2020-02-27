@@ -1,35 +1,41 @@
+# frozen_string_literal: true
+
 class Public::UsersController < ApplicationController
+  before_action :login_user, only: %i[edit update mypage create]
   def show
     @user = User.friendly.find(params[:id])
   end
 
-  def mypage #Mypage/マイページ/自分の投稿を表示
+  def mypage
     @post = Post.new
-  end
-
-  def edit #ユーザー情報の変更画面
     @user = User.friendly.find(params[:id])
   end
 
-  def favoindex #FavoritePost/いいねした投稿の表示
+  def edit
+    @user = User.friendly.find(params[:id])
+  end
+
+  def favoindex
     @me = current_user
     @post = Post.new
     @user = User.friendly.find(params[:id])
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user_id: @user.id)
   end
 
-  def followpost #FollowPost/フォローした人の投稿一覧
+  def followpost
     @me = User.friendly.find(params[:id])
     @post = Post.new
     @user = User.friendly.find(params[:id])
     @follows = @user.following_user
-
   end
 
-  def update #ユーザー情報の更新
+  def update
     @user = User.friendly.find(params[:id])
-    @user.update(user_params)
-    redirect_to users_mypage_path(current_user.friendly_id)
+    if @user.update(user_params)
+      redirect_to users_mypage_path(current_user.friendly_id)
+    else
+      redirect_to request.referer, notice: "編集に失敗しました。"
+    end
   end
 
   def destroy
@@ -39,9 +45,13 @@ class Public::UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :icon_image, :introduction, :website, :friendly_id)
   end
 
-
+  def login_user
+    @user = User.friendly.find(params[:id])
+    redirect_to "/" unless @user.id == current_user.id
+  end
 end
