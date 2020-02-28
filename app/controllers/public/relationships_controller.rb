@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Public::RelationshipsController < ApplicationController
-  before_action :login_user, only: %i[create destroy]
   def create
     current_user.follow(params[:user_id]).created_notice_follow!(current_user, params[:user_id])
     redirect_to request.referer
@@ -22,10 +21,4 @@ class Public::RelationshipsController < ApplicationController
     @users = @user.follower_user
   end
 
-  private
-    def login_user
-      @user = User.friendly.find(params[:id])
-      redirect_to "/" unless @user.id == current_user.id
-    end
-  end
 end
