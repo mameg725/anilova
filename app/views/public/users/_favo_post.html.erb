@@ -10,18 +10,18 @@
 		</tr>
 		<tr>
 			<td>
-				<% if user_signed_in? && favorite.post.user_id == current_user.id %>
-				<%= link_to(favorite.post.user) do %>
-				<%= attachment_image_tag(favorite.post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
-				<%= favorite.post.user.name %>
-				@<%= favorite.post.user.friendly_url %>
-				<% end %>
+				<% if user_signed_in? && favorite.post.user.id == current_user.id %>
+					<%= link_to users_mypage_path(current_user.friendly_url) do %>
+					<%= attachment_image_tag(favorite.post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+					<%= favorite.post.user.name %>
+					@<%= favorite.post.user.friendly_url %>
+					<% end %>
 				<% else %>
-				<%= link_to(favorite.post.user) do %>
-				<%= attachment_image_tag(favorite.post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
-				<%= favorite.post.user.name %>
-				@<%= favorite.post.user.friendly_url %>
-				<% end %>
+					<%= link_to user_path(favorite.post.user) do %>
+					<%= attachment_image_tag(favorite.post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+					<%= favorite.post.user.name %>
+					@<%= favorite.post.user.friendly_url %>
+					<% end %>
 				<% end %>
 			</td>
 		</tr>
