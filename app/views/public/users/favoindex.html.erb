@@ -5,7 +5,7 @@
 	<% end %>
 	<%= render "public/users/menubar", user: @user %>
 	<% if @user.favorites.count > 0 %>
-		<%= render "favo_post", favorites: @favorites, post: @post %>
+		<%= render "favo_post", favorites: @favorites %>
 	<% else %>
 		<p>Let's discover Favorite !</p>
 	<% end %>

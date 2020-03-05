@@ -21,23 +21,23 @@ User.create!([
 	password: "aaaaaa"
 	},
 	{
-	name: "ユーザー１",
-	friendly_url: "aaa",
-	introduction: "ユーザー1",
+	name: "まめ",
+	friendly_url: "mame",
+	introduction: "にゃんこ最高！",
 	email: "aaa@gmail.com",
 	password: "111111"
 	},
 	{
-	name: "ユーザー２",
-	friendly_url: "bbb",
-	introduction: "ユーザー2",
+	name: "ぽち",
+	friendly_url: "pochi",
+	introduction: "犬が好きです。",
 	email: "bbb@gmail.com",
-	password: "111111"
+	password: "222222"
 	},
 	{
-	name: "ユーザー３",
-	friendly_url: "ccc",
-	introduction: "ユーザー3",
+	name: "たま",
+	friendly_url: "tama",
+	introduction: "猫大好き。",
 	email: "ccc@gmail.com",
 	password: "333333"
 	}]
