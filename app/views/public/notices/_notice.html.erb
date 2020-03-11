@@ -4,7 +4,7 @@
 		<% when "follow" then %>
 			<div class="row">
 				<%= link_to user_path(notice.visitor) do %>
-					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
 					<%= notice.visitor.name %>
 				<% end %>
 				<p> さんが あなたをフォローしました。</p>
@@ -12,7 +12,7 @@
 		<% when "favorite" then %>
 			<div class="row">
 				<%= link_to user_path(notice.visitor) do %>
-					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg") %>
+					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg") %>
 					<%= notice.visitor.name %>
 				<% end %>
 				<p> さんが あなたの投稿に いいねをつけました。</p>
@@ -23,7 +23,7 @@
 		<% when "comment" then %>
 			<div class="row">
 				<%= link_to user_path(notice.visitor) do %>
-					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size: "50x50") %>
+					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size: "50x50") %>
 					<%= notice.visitor.name %>
 				<% end %>
 				<p> さんが あなたの投稿に コメントしました。</p>
@@ -33,7 +33,7 @@
 			</div>
 		<% when "news" then %>
 			<div class="row">
-					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size: "50x50") %>
+					<%= attachment_image_tag(notice.visitor, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size: "50x50") %>
 					運営
 				<p> から お知らせが届いています。</p>
 				<%= link_to newss_path(notice.news) do %>

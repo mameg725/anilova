@@ -4,13 +4,13 @@
 	<table>
 		<tr>
 			<td>
-				<%= attachment_image_tag(@post, :post_image, :fill, 400, 400, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size: "400x400") %>
+				<%= attachment_image_tag(@post, :post_image, :fill, 400, 400, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size: "400x400") %>
 			</td>
 		</tr>
 		<% if user_signed_in? %>
 		<tr>
 			<td height="70">
-				<%= attachment_image_tag(current_user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+				<%= attachment_image_tag(current_user, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
 				<%= current_user.name %>
 				@<%= current_user.friendly_url %>
 			</td>
@@ -34,13 +34,13 @@
 			<td>
 				<% if user_signed_in? && @post.user_id == current_user.id %>
 					<%= link_to users_mypage_path(current_user.friendly_url) do %>
-					<%= attachment_image_tag(@post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+					<%= attachment_image_tag(@post.user, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
 					<%= @user.name %>
 					@<%= @user.friendly_url %><br>
 					<% end %>
 				<% else %>
 					<%= link_to(@post.user) do %>
-					<%= attachment_image_tag(@post.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+					<%= attachment_image_tag(@post.user, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
 					<%= @user.name %>
 					@<%= @user.friendly_url %><br>
 					<% end %>
@@ -83,7 +83,7 @@
 		<tr>
 			<td>
 				<%= link_to user_path(post_comment.user.friendly_url) do %>
-				<%= attachment_image_tag(post_comment.user, :icon_image, :fill, 50, 50, fallback: "カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
+				<%= attachment_image_tag(post_comment.user, :icon_image, :fill, 50, 50, fallback: "/assets/カメラでの撮影禁止アイコン 3.jpeg", size:"50x50") %>
 				<%= post_comment.user.name %>
 				@<%= post_comment.user.friendly_url %>
 				<% end %>
